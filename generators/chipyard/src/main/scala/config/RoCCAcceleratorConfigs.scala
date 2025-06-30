@@ -71,3 +71,9 @@ class ZstdCompressorRocketConfig extends Config(
   new compressacc.WithZstdCompressor ++
   new freechips.rocketchip.rocket.WithNHugeCores(1) ++
   new chipyard.config.AbstractConfig)
+
+class SDCRoCCConfig extends Config(
+  new sdc_soc.withSDCConfig ++
+  new freechips.rocketchip.rocket.WithNHugeCores(1) ++
+  // new chipyard.config.WithSystemBusWidth(128) ++
+  new chipyard.config.AbstractConfig) 
