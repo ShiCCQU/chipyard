@@ -427,5 +427,13 @@ lazy val firechip = (project in file("generators/firechip/chip"))
   .settings(scalaTestSettings)
 
 lazy val sdc_soc = freshProject("sdc_soc", file("generators/sdc_soc"))
-  .dependsOn(rocketchip)
-  .settings(commonSettings)
+  .dependsOn(rocketchip, fixedpoint)
+  .settings(
+    commonSettings,
+    libraryDependencies ++= Seq(
+      "org.chipsalliance" %% "chisel" % "6.7.0",
+      "org.scalatest" %% "scalatest" % "3.2.16" % "test",
+    ),
+    addCompilerPlugin("org.chipsalliance" % "chisel-plugin" % chisel6Version cross CrossVersion.full)
+  )
+  
